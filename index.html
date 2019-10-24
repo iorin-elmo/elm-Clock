@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>ElmClock</title>
+  <link rel="stylesheet" type="text/css" href="elm.css">
+</head>
+<body>
+  <main/>
+  <p>code:<a href="https://github.com/iorin-elmo/">github.com/iorin-elmo/</a></p>
+  <script src="elm.js"></script>
+  <audio id="my-audio" src="./sourceFileName"></audio>
+  <script type="text/javascript">
+    const app = Elm.Main.init({ node: document.querySelector('main') });
+    var audio = new Audio();
+    audio.src = "./sourceFileName";
+    app.ports.audioPlay.subscribe(function(id) {
+      audio.play();
+    });
+    app.ports.volumeChange.subscribe(function(volume) {
+      audio.volume = volume;
+    });
+    app.ports.audioReset.subscribe(function(id) {
+      audio.pause();
+      audio.currentTime = 0;
+    });
+  </script>
+</body>
+</html>
